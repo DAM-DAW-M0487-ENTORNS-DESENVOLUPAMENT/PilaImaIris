@@ -357,6 +357,18 @@ namespace IrisIsabel.Controlador
 
             return strbuild.ToString();
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is null || obj is not Pila<T> altraPila || altraPila.Count != this.Count)
+                return false;
+
+            for (int i = 0; i <= top; i++)
+                if (!this[i].Equals(altraPila[i]))
+                    return false;
+
+            return true;
+        }
         #endregion
 
     }
