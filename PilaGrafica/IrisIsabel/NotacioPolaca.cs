@@ -45,7 +45,7 @@ namespace IrisIsabel
                 
                 else if (c == '+' || c == '-' || c == '*' || c == '/')
                 {
-                    while (!pila.IsEmpty && Precedencia(pila.Peek()[0]) >= Precedencia(c))  // Asegúrate de obtener el primer carácter
+                    while (!pila.IsEmpty && Precedencia(pila.Peek()[0]) >= Precedencia(c))  
                     {
                         postfix.Append(pila.Pop());
                     }
