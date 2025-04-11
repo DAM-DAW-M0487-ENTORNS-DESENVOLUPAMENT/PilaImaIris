@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IrisIsabel.Control;
 
 namespace IrisIsabel
 {
-    internal class Compilador
+    public class Compilador
     {
-        public Compilador()
-        {
-        }
         public bool Validar(string expressio)
         {
-            Stack<string> pila = new Stack<string>();
+            Pila<string> pila = new Pila<string>();
             bool res = true;
 
             foreach (char c in expressio)

@@ -11,7 +11,7 @@ namespace IrisIsabel.Control
     /// Representa una llista genèrica que implementa les interfícies IEnumerable, ICollection i IList.
     /// </summary>
     /// <typeparam name="T">Tipus dels elements de la llista.</typeparam>
-    public class TaulaLlista<T> : IEnumerable<T>, ICloneable, ICollection<T>, IList<T>
+    public class TaulaLlista<T> : ICollection<T>, IList<T>, IEnumerable<T>, ICloneable
     {
         //Atributs
         private T[] dades;  //esta apuntant a null, no te valors per ara
@@ -172,7 +172,7 @@ namespace IrisIsabel.Control
         /// </summary>
         /// <param name="item">Element a afegir.</param>
         /// <exception cref="NotSupportedException">Si l'element és null o la llista és només de lectura.</exception>
-        void ICollection<T>.Add(T item)
+        public void Add(T item)
         {
             if (item is null) throw new NotSupportedException("Item introduit es null");
             else if (IsReadOnly) throw new NotSupportedException("Llista es nomes de lectura");
@@ -185,7 +185,7 @@ namespace IrisIsabel.Control
         /// Elimina tots els elements de la llista.
         /// </summary>
         /// <exception cref="NotSupportedException">Si la llista és només de lectura.</exception>
-        void ICollection<T>.Clear()
+        public void Clear()
         {
             if (IsReadOnly) throw new NotSupportedException("Llista es nomes de lectura");
             for (int i = 0; i < nElem; nElem++) dades[i] = default(T);
@@ -197,7 +197,7 @@ namespace IrisIsabel.Control
         /// </summary>
         /// <param name="item">Element a verificar.</param>
         /// <returns>True si l'element està a la llista, de lo contrari false.</returns>
-        bool ICollection<T>.Contains(T item)
+        public bool Contains(T item)
         {
             return item != null && dades.Contains(item);
         }
@@ -210,7 +210,7 @@ namespace IrisIsabel.Control
         /// <exception cref="ArgumentNullException">Si l'array és null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Si l'índex està fora dels límits permesos.</exception>
         /// <exception cref="ArgumentException">Si l'array no té espai suficient.</exception>
-        void ICollection<T>.CopyTo(T[] array, int arrayIndex)
+        public void CopyTo(T[] array, int arrayIndex)
         {
             if (array is null) throw new ArgumentNullException("Array es null");
             else if (arrayIndex < 0) throw new ArgumentOutOfRangeException("Esta fora del rang permes");
@@ -229,7 +229,7 @@ namespace IrisIsabel.Control
         /// <param name="item">Element a eliminar.</param>
         /// <returns>True si l'element ha estat eliminat, de lo contrari false.</returns>
         /// <exception cref="NotSupportedException">Si l'element és null o la llista és només de lectura.</exception>
-        bool ICollection<T>.Remove(T item)
+        public bool Remove(T item)
         {
             int index = ((IList<T>)this).IndexOf(item);
             if (item is null) throw new NotSupportedException("Item introduit es null");
@@ -343,7 +343,7 @@ namespace IrisIsabel.Control
         /// <param name="item">Element a inserir.</param>
         /// <exception cref="NotSupportedException">Si la llista és només de lectura.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Si l'índex està fora del rang permès.</exception>
-        void IList<T>.Insert(int index, T item)
+        public void Insert(int index, T item)
         {
             if (IsReadOnly) throw new NotSupportedException("Llista es nomes de lectura");
             else if (item is null) throw new NullReferenceException("Item introduit es null");
@@ -365,7 +365,7 @@ namespace IrisIsabel.Control
         /// </summary>
         /// <param name="index">Índex de l'element a eliminar.</param>
         /// <exception cref="ArgumentOutOfRangeException">Si l'índex està fora del rang permès.</exception>
-        void IList<T>.RemoveAt(int index)
+        public void RemoveAt(int index)
         {
             if (IsReadOnly) throw new NotSupportedException("Llista es nomes de lectura");
             else if (index < 0 || index >= nElem) throw new ArgumentOutOfRangeException("Esta fora del rang permes");
@@ -411,6 +411,7 @@ namespace IrisIsabel.Control
         {
             return Clonar();
         }
+
 
         #endregion
     }
