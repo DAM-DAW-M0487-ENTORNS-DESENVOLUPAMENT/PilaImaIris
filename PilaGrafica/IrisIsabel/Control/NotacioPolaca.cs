@@ -20,52 +20,50 @@ namespace IrisIsabel
         {
             Pila<string> pila = new Pila<string>();
             StringBuilder postfix = new StringBuilder();
-            StringBuilder numero = new StringBuilder(); 
+            StringBuilder numero = new StringBuilder();
 
             for (int i = 0; i < infijo.Length; i++)
             {
                 char c = infijo[i];
 
-                if (char.IsWhiteSpace(c))
+                if (!char.IsWhiteSpace(c))
                 {
-                    continue;
-                }
-
-                if (char.IsDigit(c))
-                {
-                    numero.Append(c); 
-                }
-                else
-                {
-                    if (numero.Length > 0)
+                    if (char.IsDigit(c))
                     {
-                        postfix.Append(numero.ToString() + " ");
-                        numero.Clear(); 
+                        numero.Append(c);
                     }
-
-                    if (c == '(')
+                    else
                     {
-                        pila.Push(c.ToString());
-                    }
-                    else if (c == ')')
-                    {
-                        while (!pila.IsEmpty && pila.Peek() != "(")
+                        if (numero.Length > 0)
                         {
-                            postfix.Append(pila.Pop() + " ");
+                            postfix.Append(numero.ToString() + " ");
+                            numero.Clear();
                         }
 
-                        if (!pila.IsEmpty && pila.Peek() == "(")
+                        if (c == '(')
                         {
-                            pila.Pop();
+                            pila.Push(c.ToString());
                         }
-                    }
-                    else if (c == '+' || c == '-' || c == '*' || c == '/')
-                    {
-                        while (!pila.IsEmpty && Precedencia(pila.Peek()[0]) >= Precedencia(c))
+                        else if (c == ')')
                         {
-                            postfix.Append(pila.Pop() + " ");
+                            while (!pila.IsEmpty && pila.Peek() != "(")
+                            {
+                                postfix.Append(pila.Pop() + " ");
+                            }
+
+                            if (!pila.IsEmpty && pila.Peek() == "(")
+                            {
+                                pila.Pop();
+                            }
                         }
-                        pila.Push(c.ToString());
+                        else if (c == '+' || c == '-' || c == '*' || c == '/')
+                        {
+                            while (!pila.IsEmpty && Precedencia(pila.Peek()[0]) >= Precedencia(c))
+                            {
+                                postfix.Append(pila.Pop() + " ");
+                            }
+                            pila.Push(c.ToString());
+                        }
                     }
                 }
             }
