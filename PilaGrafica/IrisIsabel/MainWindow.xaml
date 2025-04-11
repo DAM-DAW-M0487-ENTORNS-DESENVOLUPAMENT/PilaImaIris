@@ -7,6 +7,35 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <TabControl>
+            <TabItem x:Name="compiladorTab" Header="Compilador">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="CompiladorGrid" d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding TaulaLlista}" Margin="41,66,323,158" SelectionChanged="DataGrid_SelectionChanged"/>
+
+                    <CheckBox x:Name="validarCompCheck" Content="" HorizontalAlignment="Left" Margin="699,99,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="validarCompText" HorizontalAlignment="Left" Margin="553,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="validacioCompButton" Content="Validar" HorizontalAlignment="Left" Margin="593,125,0,0" VerticalAlignment="Top" Click="validacioCompButton_Click"/>
+                    <TextBlock x:Name="validaCompText" HorizontalAlignment="Left" Margin="556,71,0,0" TextWrapping="Wrap" Text="Valida el teu text aqui" VerticalAlignment="Top"/>
+                    <Button x:Name="fitxerCompBtn" Content="Puja un fitxer" HorizontalAlignment="Left" Margin="556,157,0,0" VerticalAlignment="Top" Height="66" Width="117" Click="fitxerCompBtn_Click"/>
+                    <CheckBox x:Name="validCompCheck" Content="Validat" HorizontalAlignment="Left" Margin="602,236,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="NotPolacaItem" Header="Notacio Polaca">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="inpostNotaText" HorizontalAlignment="Left" Margin="557,71,0,0" TextWrapping="Wrap" Text="Notació infix a postfix" VerticalAlignment="Top"/>
+                    <TextBox x:Name="inputNotaText" HorizontalAlignment="Left" Margin="553,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="validacioNotaButton" Content="Convertir" HorizontalAlignment="Left" Margin="587,142,0,0" VerticalAlignment="Top" Click="validacioNotaButton_Click"/>
+                    <DataGrid x:Name="NotacioGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,79,306,124"/>
+                    <TextBox x:Name="outputNotaText" HorizontalAlignment="Left" Margin="552,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
 
     </Grid>
 </Window>
