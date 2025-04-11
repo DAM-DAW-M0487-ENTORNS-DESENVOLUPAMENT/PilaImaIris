@@ -12,7 +12,7 @@ namespace IrisIsabel.Control
 
         private T[] data;
         private int top = -1;
-        const int DEFAULT_SIZE = 5;
+        const int DEFAULT_SIZE = 10000;
         private int size;
 
         #region Constructors
@@ -260,8 +260,8 @@ namespace IrisIsabel.Control
         {
             if (top == -1) throw new InvalidOperationException("No hi ha res a l'stack");
             T item = data[top];
+            data[top] = default;
             top--;
-            data[top] = default;  // Esborrem la referència de l'element
             return item;
         }
 

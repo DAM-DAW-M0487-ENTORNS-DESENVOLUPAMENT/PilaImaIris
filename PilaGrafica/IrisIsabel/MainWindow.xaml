@@ -25,11 +25,11 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock x:Name="validaNotaText" HorizontalAlignment="Left" Margin="557,71,0,0" TextWrapping="Wrap" Text="Valida el teu text aqui" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="inpostNotaText" HorizontalAlignment="Left" Margin="557,71,0,0" TextWrapping="Wrap" Text="Notació infix a postfix" VerticalAlignment="Top"/>
                     <TextBox x:Name="inputNotaText" HorizontalAlignment="Left" Margin="553,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <Button x:Name="validacioNotaButton" Content="Validar" HorizontalAlignment="Left" Margin="593,125,0,0" VerticalAlignment="Top"/>
-                    <CheckBox x:Name="validarNotaCheck" Content="" HorizontalAlignment="Left" Margin="699,99,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="validacioNotaButton" Content="Convertir" HorizontalAlignment="Left" Margin="587,142,0,0" VerticalAlignment="Top" Click="validacioNotaButton_Click"/>
                     <DataGrid x:Name="NotacioGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,79,306,124"/>
+                    <TextBox x:Name="outputNotaText" HorizontalAlignment="Left" Margin="552,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 </Grid>
             </TabItem>
         </TabControl>

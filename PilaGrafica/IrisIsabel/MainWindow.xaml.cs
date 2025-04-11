@@ -25,5 +25,27 @@ namespace IrisIsabel
         {
 
         }
+
+        private void validacioNotaButton_Click(object sender, RoutedEventArgs e)
+        {
+            string infijo = inputNotaText.Text;
+
+            if (string.IsNullOrWhiteSpace(infijo))
+            {
+                MessageBox.Show("Si us plau, introdueix una expressió infix.", "Advertència", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            try
+            {
+                string postfijo = NotacioPolaca.InfijoAPostfijo(infijo);
+                outputNotaText.Text = postfijo;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error en convertir l'expressió: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
     }
 }
